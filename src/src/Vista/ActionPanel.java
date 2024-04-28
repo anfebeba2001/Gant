@@ -14,6 +14,8 @@ public class ActionPanel extends JPanel {
 	private JButton btnExit;
 	private JButton btnStopAuto;
 	private JButton btnAddAuto;
+	private JButton btnServeAuto;
+	private JButton btnStopServe;
 
 	public ActionPanel(JFrame window) {
 
@@ -32,6 +34,11 @@ public class ActionPanel extends JPanel {
 		btnStopAuto = new JButton("DetenerAuto");
 		add(btnStopAuto);
 
+		btnServeAuto = new JButton("Atender auto");
+		add(btnServeAuto);
+
+		btnStopServe = new JButton("Detener Atender");
+		add(btnStopServe);
 
 		btnRestart = new JButton("Reiniciar");
 		add(btnRestart);
@@ -71,6 +78,10 @@ public class ActionPanel extends JPanel {
 	public void setBtnStopAuto(JButton btnStopAuto){this.btnStopAuto = btnStopAuto;}
 
 	public JButton getBtnAddAuto(){return btnAddAuto;}
+
+	public JButton getBtnServeAuto() {return btnServeAuto;}
+
+	public JButton getBtnStopServe() {return btnStopServe;}
 
 	public void setBtnAddAuto(JButton btnAddAuto){this.btnAddAuto = btnAddAuto;}
 	

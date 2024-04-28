@@ -33,11 +33,15 @@ public class Controller {
                 throw new RuntimeException(ex);
             }
         });
+		view.getPanelAction().getBtnServeAuto().addActionListener(e -> serveAuto());
+		view.getPanelAction().getBtnStopAuto().addActionListener(e -> stopServeAuto());
 		view.getPanelAction().getBtnStopAuto().addActionListener(e-> stopAuto());
 		view.getPanelAction().getBtnRestart().addActionListener(e -> restartAction());
 		view.getPanelAction().getBtnExit().addActionListener(e -> exitAction());
 		view.setVisible(true);
 	}
+
+
 
 	private void setTableColumName(String[] columnName) {
 		if (this.view.getPanelTable().getTableModel() == null)
@@ -46,10 +50,10 @@ public class Controller {
 
 
 	Timer timer2 ;
-	boolean auto;
+
 
    private void addAutoAction() throws InterruptedException {
-	   auto = true;
+
 	   TimerTask task = new TimerTask()
 	   {
 			public void run()
@@ -65,6 +69,25 @@ public class Controller {
 	private void stopAuto()
 	{
 		timer2.cancel();
+	}
+
+		Timer timer3;
+
+	private void stopServeAuto() {
+		timer3.cancel();
+	}
+
+	private void serveAuto() {
+
+		TimerTask task = new TimerTask()
+		{
+			public void run()
+			{
+				pollAction();
+			}
+		};
+		timer3 = new Timer();
+		timer3.schedule(task, 1000,2500);
 	}
 
 	private void addAction() {
@@ -88,6 +111,10 @@ public class Controller {
 			view.getPanelTable().getTableModel().addRow(data);
 			view.getPanelTableGantt().paintProcess(data);
 		} else {
+	
+			timer3.cancel();
+
+			timer3.cancel();
 			JOptionPane.showMessageDialog(null, "¡No hay ningún procesos por atender!", "Atender",
 					JOptionPane.WARNING_MESSAGE);
 		}
