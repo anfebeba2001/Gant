@@ -1,11 +1,15 @@
 package src.Controlador;
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 
 import src.Vista.Window;
 import src.Modelo.Model;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 public class Controller {
 
@@ -22,8 +26,14 @@ public class Controller {
 		view.getPanelAction().getBtnInit().addActionListener(e -> initAction());
 		view.getPanelAction().getBtnPoll().addActionListener(e -> pollAction());
 		view.getPanelAction().getBtnAdd().addActionListener(e -> addAction());
-		view.getPanelAction().getBtnLock().addActionListener(e -> lockAction());
-		view.getPanelAction().getBtnUnLock().addActionListener(e -> unLockAction());
+		view.getPanelAction().getBtnAddAuto().addActionListener(e -> {
+            try {
+                addAutoAction();
+            } catch (InterruptedException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+		view.getPanelAction().getBtnStopAuto().addActionListener(e-> stopAuto());
 		view.getPanelAction().getBtnRestart().addActionListener(e -> restartAction());
 		view.getPanelAction().getBtnExit().addActionListener(e -> exitAction());
 		view.setVisible(true);
@@ -32,6 +42,33 @@ public class Controller {
 	private void setTableColumName(String[] columnName) {
 		if (this.view.getPanelTable().getTableModel() == null)
 			this.view.getPanelTable().setTableModel(new DefaultTableModel(columnName, 0));
+	}
+
+
+	Timer timer2 ;
+	boolean auto;
+
+   private void addAutoAction() throws InterruptedException {
+	   auto = true;
+	   TimerTask task = new TimerTask()
+	   {
+			public void run()
+		   {
+			   addAction();
+		   }
+	   };
+		timer2 = new Timer();
+	   	timer2.schedule(task, 1000,2000);
+
+
+   }
+	private void stopAuto()
+	{
+		timer2.cancel();
+	}
+
+	private void addAction() {
+		view.getPanelTableReadyQueue().getTableModel().addRow(model.getQueueReady().addProcess());
 	}
 
 	private void initAction() {
@@ -56,31 +93,9 @@ public class Controller {
 		}
 	}
 
-	private void addAction() {
-		view.getPanelTableReadyQueue().getTableModel().addRow(model.getQueueReady().addProcess());
-	}
 
-	private void lockAction() {
-		if (!model.getQueueReady().isQueueEmpty()) {
-			view.getPanelTableReadyQueue().getTableModel().removeRow(0);
-			view.getPanelTableLockQueue().getTableModel()
-					.addRow(model.getQueueLock().appendProcess((model.getQueueReady().pollProcess())));
-		} else {
-			JOptionPane.showMessageDialog(null, "¡No hay ningún procesos para bloquear!", "Bloquear",
-					JOptionPane.WARNING_MESSAGE);
-		}
-	}
 
-	private void unLockAction() {
-		if (!model.getQueueLock().isQueueEmpty()) {
-			view.getPanelTableLockQueue().getTableModel().removeRow(0);
-			view.getPanelTableReadyQueue().getTableModel()
-					.addRow(model.getQueueReady().appendProcess((model.getQueueLock().pollProcess())));
-		} else {
-			JOptionPane.showMessageDialog(null, "¡No hay ningún procesos por desbloquear!", "Desbloquear",
-					JOptionPane.WARNING_MESSAGE);
-		}
-	}
+
 
 	private void restartAction() {
 		int resp = JOptionPane.showConfirmDialog(null, "¿Está seguro que quiere reiniciar del programa?", "Reiniciar",
@@ -91,7 +106,7 @@ public class Controller {
 				model = new Model();
 				view.getPanelTable().getTableModel().setNumRows(0);
 				view.getPanelTableReadyQueue().getTableModel().setNumRows(0);
-				view.getPanelTableLockQueue().getTableModel().setNumRows(0);
+
 				view.getPanelTableGantt().getTableModel().setNumRows(0);
 				view.getPanelTableGantt().getTableModel().setColumnCount(1);
 			} catch (Throwable e) {

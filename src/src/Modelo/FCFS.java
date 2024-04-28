@@ -7,7 +7,7 @@ public class FCFS {
 	private int serialId;
 
 	public FCFS() {
-		queue = new Process>();
+		queue = new Queue<Process>();
 		serialId = 0;
 	}
 

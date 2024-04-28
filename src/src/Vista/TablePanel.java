@@ -21,6 +21,7 @@ public class TablePanel extends JPanel {
 		setLayout(new BorderLayout());
 
 		table = new JTable();
+
 		JScrollPane scrollJTable = new JScrollPane(table);
 		table.setFillsViewportHeight(true);
 

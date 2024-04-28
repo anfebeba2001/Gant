@@ -33,6 +33,7 @@ public class GanttPanel extends TablePanel {
 		for (int i = startTime; i < finalTime; i++) {
 			getTableModel().addColumn(String.valueOf(i));
 			getTableModel().setValueAt(" ", row, i + 1);
+
 		}
 	}	
 }

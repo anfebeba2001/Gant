@@ -14,7 +14,7 @@ public class Window extends JFrame {
 
 	private GanttPanel panelTableGantt;
 	private TablePanel panelTableReadyQueue;
-	private TablePanel panelTableLockQueue;
+
 	private TablePanel panelTable;
 	private ActionPanel panelAction;
 
@@ -35,9 +35,6 @@ public class Window extends JFrame {
 		initTableStatusPanel(panelTableReadyQueue, COLUMN_NAME);
 		panelStatus.add(panelTableReadyQueue);
 
-		panelTableLockQueue = new TablePanel(this, "C. Bloqueados");
-		initTableStatusPanel(panelTableLockQueue, COLUMN_NAME);
-		panelStatus.add(panelTableLockQueue);
 
 		add(panelStatus, BorderLayout.WEST);
 
@@ -71,13 +68,6 @@ public class Window extends JFrame {
 		this.panelTableReadyQueue = panelTableReadyQueue;
 	}
 
-	public TablePanel getPanelTableLockQueue() {
-		return panelTableLockQueue;
-	}
-
-	public void setPanelTableLockQueue(TablePanel panelTableLockQueue) {
-		this.panelTableLockQueue = panelTableLockQueue;
-	}
 
 	public TablePanel getPanelTable() {
 		return panelTable;
