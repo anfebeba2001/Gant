@@ -3,6 +3,10 @@ package src.Vista;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.text.StyleConstants;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ActionPanel extends JPanel {
 
@@ -19,7 +23,9 @@ public class ActionPanel extends JPanel {
 
 	public ActionPanel(JFrame window) {
 
+		this.setBackground(new Color(117, 171, 224));
 		btnInit = new JButton("Iniciar");
+
 		add(btnInit);
 
 		btnPoll = new JButton("Atender");
@@ -32,12 +38,14 @@ public class ActionPanel extends JPanel {
 		add(btnAddAuto);
 
 		btnStopAuto = new JButton("DetenerAuto");
+		btnStopAuto.setBackground(new Color(252, 42, 57));
 		add(btnStopAuto);
 
 		btnServeAuto = new JButton("Atender auto");
 		add(btnServeAuto);
 
 		btnStopServe = new JButton("Detener Atender");
+		btnStopServe.setBackground(new Color(252, 42, 57));
 		add(btnStopServe);
 
 		btnRestart = new JButton("Reiniciar");

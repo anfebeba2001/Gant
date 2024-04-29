@@ -4,11 +4,13 @@ import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 
 public class GanttPanel extends TablePanel {
 
 	public GanttPanel(JFrame window, String title) {
 		super(window, title);
+		this.setBackground(new Color(133, 121, 218));
 		getTable().setShowGrid(false);
 		getTable().setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		setTableModel(new DefaultTableModel(new Object[]{"PID"}, 0));

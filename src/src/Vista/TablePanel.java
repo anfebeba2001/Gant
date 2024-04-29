@@ -1,6 +1,6 @@
 package src.Vista;
 
-import java.awt.BorderLayout;
+import java.awt.*;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -17,6 +17,7 @@ public class TablePanel extends JPanel {
 	private DefaultTableModel tableModel;
  
 	public TablePanel(JFrame window, String title) {
+		this.setBackground(new Color(132, 189, 248));
 		setBorder(BorderFactory.createTitledBorder(title));
 		setLayout(new BorderLayout());
 

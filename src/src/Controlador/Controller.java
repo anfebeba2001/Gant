@@ -34,7 +34,7 @@ public class Controller {
             }
         });
 		view.getPanelAction().getBtnServeAuto().addActionListener(e -> serveAuto());
-		view.getPanelAction().getBtnStopAuto().addActionListener(e -> stopServeAuto());
+		view.getPanelAction().getBtnStopServe().addActionListener(e -> stopServeAuto());
 		view.getPanelAction().getBtnStopAuto().addActionListener(e-> stopAuto());
 		view.getPanelAction().getBtnRestart().addActionListener(e -> restartAction());
 		view.getPanelAction().getBtnExit().addActionListener(e -> exitAction());

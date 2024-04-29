@@ -17,9 +17,9 @@ public class TableCellRedendererColor extends DefaultTableCellRenderer {
 		if (value == null)
 			componente.setBackground(Color.WHITE);
 		else if (value.equals("  "))
-			componente.setBackground(new Color(154, 219, 223));
+			componente.setBackground(new Color(154, 163, 223));
 		else if(value.equals(" "))
-			componente.setBackground(new Color(98, 209, 68));
+			componente.setBackground(new Color(101, 248, 170));
 		else
 			componente.setBackground(Color.WHITE);
 		
