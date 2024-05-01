@@ -13,7 +13,8 @@ public class ActionPanel extends JPanel {
 	private JButton btnInit;
 	private JButton btnPoll;
 	private JButton btnAdd;
-
+    private JButton btnLock;
+    private JButton btnUnLock;
 	private JButton btnRestart;
 	private JButton btnExit;
 	private JButton btnStopAuto;
@@ -33,6 +34,12 @@ public class ActionPanel extends JPanel {
 
 		btnAdd = new JButton("Agregar");
 		add(btnAdd);
+
+        btnLock = new JButton("Bloquear");
+        add(btnLock);
+
+        btnUnLock = new JButton("Desbloquear");
+        add(btnUnLock);
 
 		btnAddAuto = new JButton("Agregar auto");
 		add(btnAddAuto);
@@ -80,6 +87,22 @@ public class ActionPanel extends JPanel {
 	public void setBtnAdd(JButton btnAdd) {
 		this.btnAdd = btnAdd;
 	}
+
+    public JButton getBtnLock() {
+        return btnLock;
+    }
+
+    public void setBtnLock(JButton btnLock) {
+        this.btnLock = btnLock;
+    }
+
+    public JButton getBtnUnLock() {
+        return btnUnLock;
+    }
+
+    public void setBtnUnLock(JButton btnUnLock) {
+        this.btnUnLock = btnUnLock;
+    }
 
 	public JButton getBtnStopAuto(){return btnStopAuto;}
 

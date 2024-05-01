@@ -26,6 +26,8 @@ public class Controller {
 		view.getPanelAction().getBtnInit().addActionListener(e -> initAction());
 		view.getPanelAction().getBtnPoll().addActionListener(e -> pollAction());
 		view.getPanelAction().getBtnAdd().addActionListener(e -> addAction());
+		view.getPanelAction().getBtnLock().addActionListener(e -> lockAction());
+		view.getPanelAction().getBtnUnLock().addActionListener(e -> unLockAction());
 		view.getPanelAction().getBtnAddAuto().addActionListener(e -> {
             try {
                 addAutoAction();
@@ -120,7 +122,27 @@ public class Controller {
 		}
 	}
 
+	private void lockAction() {
+		if (!model.getQueueReady().isQueueEmpty()) {
+			view.getPanelTableReadyQueue().getTableModel().removeRow(0);
+			view.getPanelTableLockQueue().getTableModel()
+					.addRow(model.getQueueLock().appendProcess((model.getQueueReady().pollProcess())));
+		} else {
+			JOptionPane.showMessageDialog(null, "¡No hay ningún procesos para bloquear!", "Bloquear",
+					JOptionPane.WARNING_MESSAGE);
+		}
+	}
 
+	private void unLockAction() {
+		if (!model.getQueueLock().isQueueEmpty()) {
+			view.getPanelTableLockQueue().getTableModel().removeRow(0);
+			view.getPanelTableReadyQueue().getTableModel()
+					.addRow(model.getQueueReady().appendProcess((model.getQueueLock().pollProcess())));
+		} else {
+			JOptionPane.showMessageDialog(null, "¡No hay ningún procesos por desbloquear!", "Desbloquear",
+					JOptionPane.WARNING_MESSAGE);
+		}
+	}
 
 
 
@@ -133,7 +155,7 @@ public class Controller {
 				model = new Model();
 				view.getPanelTable().getTableModel().setNumRows(0);
 				view.getPanelTableReadyQueue().getTableModel().setNumRows(0);
-
+				view.getPanelTableLockQueue().getTableModel().setNumRows(0);
 				view.getPanelTableGantt().getTableModel().setNumRows(0);
 				view.getPanelTableGantt().getTableModel().setColumnCount(1);
 			} catch (Throwable e) {
