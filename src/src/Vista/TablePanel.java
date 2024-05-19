@@ -1,6 +1,6 @@
-package src.Vista;
+package Vista;
 
-import java.awt.*;
+import java.awt.BorderLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -15,14 +15,12 @@ public class TablePanel extends JPanel {
 
 	private JTable table;
 	private DefaultTableModel tableModel;
- 
+
 	public TablePanel(JFrame window, String title) {
-		this.setBackground(new Color(132, 189, 248));
 		setBorder(BorderFactory.createTitledBorder(title));
 		setLayout(new BorderLayout());
 
 		table = new JTable();
-
 		JScrollPane scrollJTable = new JScrollPane(table);
 		table.setFillsViewportHeight(true);
 
@@ -52,5 +50,16 @@ public class TablePanel extends JPanel {
 	public void setTableModel(DefaultTableModel tableModel) {
 		this.tableModel = tableModel;
 		table.setModel(tableModel);
+	}
+
+	public int removeRow(int columnIndex, String value) {
+		int row = 0;
+		for (; row < table.getRowCount(); row++) {
+			if (table.getValueAt(row, columnIndex).equals(value)) {
+				tableModel.removeRow(row);
+				break;
+			}
+		}
+		return row;
 	}
 }

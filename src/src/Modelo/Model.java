@@ -1,29 +1,21 @@
-package src.Modelo;
+package Modelo;
 
 public class Model {
 
-	private FCFS queueReady;
-	private FCFS queueLock;
-	
+	private SJF queueReady;
+	private SJF queueLock;
+
 	public Model() {
-		queueReady = new FCFS();
-		queueLock = new FCFS();
+		queueReady = new SJF();
+		queueLock = new SJF();
 	}
 
-	public FCFS getQueueReady() {
+	public SJF getQueueReady() {
 		return queueReady;
 	}
 
-	public void setQueueReady(FCFS queueReady) {
-		this.queueReady = queueReady;
-	}
-
-	public FCFS getQueueLock() {
+	public SJF getQueueLock() {
 		return queueLock;
-	}
-
-	public void setQueueLock(FCFS queueLock) {
-		this.queueLock = queueLock;
 	}
 
 	public void finalizeQueues() throws Throwable {

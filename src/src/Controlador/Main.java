@@ -1,15 +1,15 @@
-package src.Controlador;
+package Controlador;
 
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import src.Modelo.Model;
-import src.Vista.Window;
+import Modelo.Model;
+import Vista.Window;
 
 public class Main {
 
-	private final static String[] COLUMN_NAME = { "Proceso", "T. Llegada", "T. Rafaga", "T. Comienzo", "T. Final",
-			"T. Retorno", "T. Espera" };
+	private final static String[] COLUMN_NAME = { "Proceso", "Prioridad", "T. Llegada", "T. Rafaga", "T. Comienzo",
+			"T. Final", "T. Retorno", "T. Espera" };
 
 	public static void main(String[] args) {
 
@@ -20,7 +20,7 @@ public class Main {
 				| UnsupportedLookAndFeelException e) {
 			e.printStackTrace();
 		}
-		Controller controller = new Controller(new Model(), new Window("Algoritmo FCFS"));
+		Controller controller = new Controller(new Model(), new Window("Algoritmo SJF"));
 		controller.initController(COLUMN_NAME);
 	}
 

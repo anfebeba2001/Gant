@@ -1,4 +1,6 @@
-package src.Vista;
+package Vista;
+
+import Modelo.Semaforo;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -10,13 +12,14 @@ import javax.swing.table.DefaultTableModel;
 
 public class Window extends JFrame {
 
-	private final String[] COLUMN_NAME = { "Proceso", "T. Llegada", "T. Rafaga" };
+	private final String[] COLUMN_NAME = { "Proceso", "Prioridad", "T. Llegada", "T. Rafaga" };
 
 	private GanttPanel panelTableGantt;
 	private TablePanel panelTableReadyQueue;
 	private TablePanel panelTableLockQueue;
 	private TablePanel panelTable;
 	private ActionPanel panelAction;
+	private SemaforoPanel panelSemaforo;
 
 	public Window(String title) {
 		setTitle(title);
@@ -47,6 +50,8 @@ public class Window extends JFrame {
 		panelAction = new ActionPanel(this);
 		add(panelAction, BorderLayout.SOUTH);
 
+		panelSemaforo = new SemaforoPanel(this,"Semaforo");
+		add(panelSemaforo, BorderLayout.EAST);
 		setResizable(false);
 	}
 
@@ -70,6 +75,7 @@ public class Window extends JFrame {
 	public void setPanelTableReadyQueue(TablePanel panelTableReadyQueue) {
 		this.panelTableReadyQueue = panelTableReadyQueue;
 	}
+
 	public TablePanel getPanelTableLockQueue() {
 		return panelTableLockQueue;
 	}
@@ -77,7 +83,6 @@ public class Window extends JFrame {
 	public void setPanelTableLockQueue(TablePanel panelTableLockQueue) {
 		this.panelTableLockQueue = panelTableLockQueue;
 	}
-
 
 	public TablePanel getPanelTable() {
 		return panelTable;
@@ -93,5 +98,13 @@ public class Window extends JFrame {
 
 	public void setPanelAction(ActionPanel panelAction) {
 		this.panelAction = panelAction;
+	}
+
+	public SemaforoPanel getPanelSemaforo() {
+        return panelSemaforo;
+    }
+
+	public void setPanelSemaforo(SemaforoPanel panelSemaforo){
+		this.panelSemaforo = panelSemaforo;
 	}
 }

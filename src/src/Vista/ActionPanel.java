@@ -1,32 +1,22 @@
-package src.Vista;
+package Vista;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.text.StyleConstants;
-import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class ActionPanel extends JPanel {
 
 	private JButton btnInit;
 	private JButton btnPoll;
 	private JButton btnAdd;
-    private JButton btnLock;
-    private JButton btnUnLock;
+	private JButton btnLock;
+	private JButton btnUnLock;
 	private JButton btnRestart;
 	private JButton btnExit;
-	private JButton btnStopAuto;
-	private JButton btnAddAuto;
-	private JButton btnServeAuto;
-	private JButton btnStopServe;
 
 	public ActionPanel(JFrame window) {
 
-		this.setBackground(new Color(117, 171, 224));
 		btnInit = new JButton("Iniciar");
-
 		add(btnInit);
 
 		btnPoll = new JButton("Atender");
@@ -35,25 +25,11 @@ public class ActionPanel extends JPanel {
 		btnAdd = new JButton("Agregar");
 		add(btnAdd);
 
-        btnLock = new JButton("Bloquear");
-        add(btnLock);
+		btnLock = new JButton("Bloquear");
+		add(btnLock);
 
-        btnUnLock = new JButton("Desbloquear");
-        add(btnUnLock);
-
-		btnAddAuto = new JButton("Agregar auto");
-		add(btnAddAuto);
-
-		btnStopAuto = new JButton("DetenerAuto");
-		btnStopAuto.setBackground(new Color(252, 42, 57));
-		add(btnStopAuto);
-
-		btnServeAuto = new JButton("Atender auto");
-		add(btnServeAuto);
-
-		btnStopServe = new JButton("Detener Atender");
-		btnStopServe.setBackground(new Color(252, 42, 57));
-		add(btnStopServe);
+		btnUnLock = new JButton("Desbloquear");
+		add(btnUnLock);
 
 		btnRestart = new JButton("Reiniciar");
 		add(btnRestart);
@@ -88,33 +64,21 @@ public class ActionPanel extends JPanel {
 		this.btnAdd = btnAdd;
 	}
 
-    public JButton getBtnLock() {
-        return btnLock;
-    }
+	public JButton getBtnLock() {
+		return btnLock;
+	}
 
-    public void setBtnLock(JButton btnLock) {
-        this.btnLock = btnLock;
-    }
+	public void setBtnLock(JButton btnLock) {
+		this.btnLock = btnLock;
+	}
 
-    public JButton getBtnUnLock() {
-        return btnUnLock;
-    }
+	public JButton getBtnUnLock() {
+		return btnUnLock;
+	}
 
-    public void setBtnUnLock(JButton btnUnLock) {
-        this.btnUnLock = btnUnLock;
-    }
-
-	public JButton getBtnStopAuto(){return btnStopAuto;}
-
-	public void setBtnStopAuto(JButton btnStopAuto){this.btnStopAuto = btnStopAuto;}
-
-	public JButton getBtnAddAuto(){return btnAddAuto;}
-
-	public JButton getBtnServeAuto() {return btnServeAuto;}
-
-	public JButton getBtnStopServe() {return btnStopServe;}
-
-	public void setBtnAddAuto(JButton btnAddAuto){this.btnAddAuto = btnAddAuto;}
+	public void setBtnUnLock(JButton btnUnLock) {
+		this.btnUnLock = btnUnLock;
+	}
 	
 	public JButton getBtnRestart() {
 		return btnRestart;

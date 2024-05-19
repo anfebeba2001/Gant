@@ -1,18 +1,28 @@
-package src.Modelo;
+package Modelo;
+import Vista.SemaforoPanel;
+import Vista.Window;
 
-public class FCFS {
+import java.awt.*;
+import java.lang.Thread;
+
+import static java.lang.Thread.sleep;
+
+public class SJF {
 
 	private Queue<Process> queue;
-	private int currentFinalTime = 0;
+	private int currentFinalTime;
 	private int serialId;
+	private SemaforoPanel semaforo;
 
-	public FCFS() {
+
+	public SJF() {
 		queue = new Queue<Process>();
+		currentFinalTime = 0;
 		serialId = 0;
 	}
 
-	private int randomBurst() {
-		return (int) (Math.random() * 10 + 1);
+	private int random(int min, int max) {
+		return (int) (Math.random() * max + min);
 	}
 
 	private void calcuteTime(Process process) {
@@ -29,7 +39,7 @@ public class FCFS {
 	}
 
 	public Object[] addProcess() {
-		Process process = new Process(serialId + 1, serialId, randomBurst());
+		Process process = new Process(serialId + 1, serialId, random(1, 4), random(1, 4));
 		queue.add(process);
 		serialId++;
 		return process.resume();
@@ -43,6 +53,38 @@ public class FCFS {
 	public Process pollProcess() {
 		return queue.poll();
 	}
+
+	public void setSemaforo(SemaforoPanel semaforo){
+		this.semaforo = semaforo;
+	}
+	public Process pollProcessByPriority() throws InterruptedException {
+
+
+
+		Process data = null;
+
+		for (int i = 1; i <= 4; i++) {
+			for (int j = 1; j <= queue.getSize(); j++) {
+				data = queue.getData(j);
+				if (data.getPriority() == i) {
+					if (data.getArrivalTime() <= currentFinalTime) {
+
+						semaforo.setBackground(Color.red);
+						Thread.sleep(1000);
+						queue.remove(j);
+						semaforo.setBackground(Color.green);
+
+
+						return data;
+					}
+				}
+			}
+		}
+
+		return data;
+	}
+
+
 
 	public int getSerialId() {
 		return serialId;

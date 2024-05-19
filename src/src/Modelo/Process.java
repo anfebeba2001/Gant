@@ -1,4 +1,4 @@
-package src.Modelo;
+package Modelo;
 
 public class Process {
 
@@ -9,11 +9,13 @@ public class Process {
 	private int finalTime;
 	private int returnTime;
 	private int waitTime;
+	private int priority;
 
-	public Process(int id, int arrivalTime, int burstTime) {
+	public Process(int id, int arrivalTime, int burstTime, int priority) {
 		this.id = id;
 		this.arrivalTime = arrivalTime;
 		this.burstTime = burstTime;
+		this.priority = priority;
 		startTime = 0;
 		finalTime = 0;
 		returnTime = 0;
@@ -77,6 +79,14 @@ public class Process {
 	}
 
 	public Object[] resume() {
-		return new Object[] { "P" + id, arrivalTime, burstTime, startTime, finalTime, returnTime, waitTime};
+		return new Object[] { "P" + id, priority, arrivalTime, burstTime, startTime, finalTime, returnTime, waitTime };
+	}
+
+	public int getPriority() {
+		return priority;
+	}
+
+	public void setPriority(int priority) {
+		this.priority = priority;
 	}
 }
